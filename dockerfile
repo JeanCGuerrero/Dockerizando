@@ -1,10 +1,11 @@
-FROM python:3.8
+FROM python:3.8-slim-buster
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y git
 
 WORKDIR /app
+RUN git clone https://github.com/JeanCGuerrero/Dockerizando.git .
 
-RUN wget https://raw.githubusercontent.com/JeanCGuerrero/Dockerizando/main/dist/Dockerizando.exe
+COPY Dockerizando.exe .
 
-CMD ["python", "Dockerizando.exe"]
+CMD ["./Dockerizando.exe"]
 
